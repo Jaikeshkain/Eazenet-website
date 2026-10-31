@@ -37,6 +37,7 @@ const I = {
   home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11l8-6.5 8 6.5V20H4z"/><path d="M9 16a4.2 4.2 0 0 1 6 0M10.8 18.2a1.6 1.6 0 0 1 2.4 0"/></svg>',
   tray:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14l2.5-8h13L21 14v5H3z"/><path d="M3 14h5l1 2h6l1-2h5"/></svg>',
   battery:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7.5" width="16" height="9" rx="2"/><path d="M21 10.5v3"/><path d="M11.5 9.5l-2 3h3l-2 3"/></svg>',
+  tick:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   share:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/></svg>',
   globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.5 5.4 3.5 8.5s-1 5.9-3.5 8.5c-2.5-2.6-3.5-5.4-3.5-8.5s1-5.9 3.5-8.5z"/></svg>'
 };
@@ -60,12 +61,17 @@ const P = {
     ],
     flow:[["Scan","The guest scans the QR code placed in the room."],["Choose","A light web page opens with the hotel's services."],["Request","The guest taps a service or sends a message."],["Respond","The right team is alerted and handles it."]],
     who:["Hotels","Resorts","Serviced apartments","Hostels","Guest houses"],
+    // cost: [label, amount, "mo" | "once"]; the Lifetime "saves" line is worked out from the Monthly upkeep fee
     pricing:[
-      {plan:"Monthly", price:3999, per:"/ month", note:"Pay month to month. Cancel anytime."},
-      {plan:"Annual", was:48000, price:39999, per:"/ year", badge:"Best value", note:"One payment covers the full year."},
-      {plan:"Lifetime", price:24999, per:"one-time", extra:"+ ₹1,999 / month service &amp; cloud charges", note:"Buy once and keep it for good."}
+      {plan:"Monthly", price:3499, per:"/ month", note:"No upfront cost. Cancel anytime.",
+        cost:[["Software upkeep",1500,"mo"],["Service &amp; cloud",1999,"mo"],["Upfront payment",0,"once"]],
+        feats:["Start with nothing upfront","Cancel anytime"]},
+      {plan:"Lifetime", price:17999, per:"one-time", extra:"+ ₹1,999 / month service &amp; cloud", note:"Buy the software once. Pay only service &amp; cloud after that.",
+        badge:"Saves ₹1,500 / month",
+        cost:[["Software licence",17999,"once"],["Service &amp; cloud",1999,"mo"],["Software upkeep",0,"mo"]],
+        feats:["Own the software for life","No software upkeep fee","Pays for itself after 12 months"]}
     ],
-    pricingIncl:["QR codes for every room","service requests and call reception","WhatsApp contact","the staff dashboard"],
+    pricingIncl:["QR code for every room","Service requests by department","One-tap call to reception","WhatsApp guest contact","Guest Requests tab","Staff dashboard"],
     demo:"qr"
   },
   "gym-erp": {
@@ -323,15 +329,17 @@ function renderProduct(id){
   </div></section>
 
   ${p.pricing?`<section class="band solid" id="pricing"><div class="wrap">
-    <div class="sec-head"><div><span class="eyebrow" style="color:var(--p)">Pricing</span><h2 class="h2">Pick the plan that fits.</h2></div><p class="lede">Every plan includes the full ${p.short}: ${p.pricingIncl.slice(0,-1).join(", ")} and ${p.pricingIncl.at(-1)}.</p></div>
-    <div class="prices">${p.pricing.map(x=>`<div class="price${x.badge?" hi":""}">
+    <div class="sec-head"><div><span class="eyebrow" style="color:var(--p)">Pricing</span><h2 class="h2">Pay monthly, or buy it once.</h2></div><p class="lede">Both plans get the same ${p.short}. The difference is how you pay for the software.</p></div>
+    <div class="prices" style="--n:${p.pricing.length}">${p.pricing.map(x=>`<div class="price${x.badge?" hi":""}">
       <div class="price-top"><span class="side">${x.plan}</span>${x.badge?`<span class="chip live" style="--c:var(--p)">${x.badge}</span>`:""}</div>
-      <div class="amt">${x.was?`<s>${inr(x.was)}</s>`:""}<b>${inr(x.price)}</b><span>${x.per}</span></div>
-      ${x.was?`<span class="save">You save ${inr(x.was-x.price)}</span>`:""}
+      <div class="amt"><b>${inr(x.price)}</b><span>${x.per}</span></div>
       ${x.extra?`<span class="save">${x.extra}</span>`:""}
-      <p>${x.note}</p>
+      <p class="pnote">${x.note}</p>
+      <dl class="pcost">${x.cost.map(c=>`<div><dt>${c[0]}</dt><dd>${c[1]?inr(c[1])+(c[2]==="mo"?" / month":" once"):"₹0"}</dd></div>`).join("")}</dl>
+      <ul class="pfeats">${x.feats.map(f=>`<li>${I.tick}${f}</li>`).join("")}</ul>
       <button class="btn ${x.badge?"btn-primary":"btn-ghost"}" type="button" data-plan="${x.plan}" style="justify-content:center">Choose ${x.plan} <span class="arr">→</span></button>
     </div>`).join("")}</div>
+    <div class="pincl"><span class="eyebrow" style="color:var(--p)">Both plans include</span><div class="tags">${p.pricingIncl.map(f=>`<span class="chip">${f}</span>`).join("")}</div></div>
   </div></section>`:""}
 
   <section class="band solid" style="padding-top:0"><div class="wrap">
