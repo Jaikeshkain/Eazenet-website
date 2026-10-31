@@ -60,6 +60,12 @@ const P = {
     ],
     flow:[["Scan","The guest scans the QR code placed in the room."],["Choose","A light web page opens with the hotel's services."],["Request","The guest taps a service or sends a message."],["Respond","The right team is alerted and handles it."]],
     who:["Hotels","Resorts","Serviced apartments","Hostels","Guest houses"],
+    pricing:[
+      {plan:"Monthly", price:3999, per:"/ month", note:"Pay month to month. Cancel anytime."},
+      {plan:"Annual", was:48000, price:39999, per:"/ year", badge:"Best value", note:"One payment covers the full year."},
+      {plan:"Lifetime", price:24999, per:"one-time", extra:"+ ₹1,999 / month service &amp; cloud charges", note:"Buy once and keep it for good."}
+    ],
+    pricingIncl:["QR codes for every room","service requests and call reception","WhatsApp contact","the staff dashboard"],
     demo:"qr"
   },
   "gym-erp": {
@@ -160,6 +166,7 @@ bento.innerHTML = ORDER.map(id => { const p=P[id]; return `
 
 /* ---------- product view ---------- */
 const MAIL_TO="hello@eazenet.online";
+const inr=n=>"₹"+n.toLocaleString("en-IN");
 function contactForm(pre,selected,cta){
   const opts=[...ORDER.map(k=>P[k].name),"A custom project"];
   return `<form class="contact-card" data-contact novalidate>
@@ -315,6 +322,18 @@ function renderProduct(id){
     <div class="audience">${p.who.map(w=>`<span>${w}</span>`).join("")}</div>
   </div></section>
 
+  ${p.pricing?`<section class="band solid" id="pricing"><div class="wrap">
+    <div class="sec-head"><div><span class="eyebrow" style="color:var(--p)">Pricing</span><h2 class="h2">Pick the plan that fits.</h2></div><p class="lede">Every plan includes the full ${p.short}: ${p.pricingIncl.slice(0,-1).join(", ")} and ${p.pricingIncl.at(-1)}.</p></div>
+    <div class="prices">${p.pricing.map(x=>`<div class="price${x.badge?" hi":""}">
+      <div class="price-top"><span class="side">${x.plan}</span>${x.badge?`<span class="chip live" style="--c:var(--p)">${x.badge}</span>`:""}</div>
+      <div class="amt">${x.was?`<s>${inr(x.was)}</s>`:""}<b>${inr(x.price)}</b><span>${x.per}</span></div>
+      ${x.was?`<span class="save">You save ${inr(x.was-x.price)}</span>`:""}
+      ${x.extra?`<span class="save">${x.extra}</span>`:""}
+      <p>${x.note}</p>
+      <button class="btn ${x.badge?"btn-primary":"btn-ghost"}" type="button" data-plan="${x.plan}" style="justify-content:center">Choose ${x.plan} <span class="arr">→</span></button>
+    </div>`).join("")}</div>
+  </div></section>`:""}
+
   <section class="band solid" style="padding-top:0"><div class="wrap">
     <a class="next" href="/${nid}/" style="--c:${next.color}">
       <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow" style="color:${next.color}">Next product</span><span class="h2">${next.name}</span><span class="muted">${next.card}</span></div>
@@ -351,6 +370,9 @@ function renderProduct(id){
   if(p.demo==="fw") wireFasway();
   pv.querySelectorAll("[data-jump]").forEach(jb=>jb.addEventListener("click",()=>{const t=document.getElementById(jb.dataset.jump);if(t)goTo(t);}));
   pv.querySelector("[data-share]").addEventListener("click",e=>shareProduct(id,e.currentTarget));
+  pv.querySelectorAll("[data-plan]").forEach(b=>b.addEventListener("click",()=>{
+    const msg=document.getElementById("pf-msg");msg.value=`I'm interested in the ${p.name} ${b.dataset.plan} plan.`;
+    goTo(document.getElementById("contact-p"));setTimeout(()=>document.getElementById("pf-name").focus({preventScroll:true}),900);}));
   if(p.demo==="hw"){
     document.getElementById("hwPad").addEventListener("click",e=>{
       const b=e.target.closest("button"); if(!b) return; hwPress(+b.dataset.b);
@@ -1027,9 +1049,9 @@ function splitWords(el){
 }
 function enhance(root){
   if(!reduce)root.querySelectorAll(".h1,.p-name").forEach(el=>splitWords(el));
-  root.querySelectorAll(".pcard,.feat,.plat,.step,.tcol,.ps,.next").forEach(el=>el.classList.add("tilt"));
+  root.querySelectorAll(".pcard,.feat,.plat,.price,.step,.tcol,.ps,.next").forEach(el=>el.classList.add("tilt"));
   if(reduce||!io)return;
-  [".sec-head",".bento",".pillars",".steps",".feats",".plats",".flow",".split",".trust",".audience",".manifesto blockquote",".demo",".fw-demo",".phone-demo",".next",".contact"].forEach(sel=>root.querySelectorAll(sel).forEach(g=>{
+  [".sec-head",".bento",".pillars",".steps",".feats",".plats",".prices",".flow",".split",".trust",".audience",".manifesto blockquote",".demo",".fw-demo",".phone-demo",".next",".contact"].forEach(sel=>root.querySelectorAll(sel).forEach(g=>{
     const kids=g.matches(".sec-head,.manifesto blockquote,.next,.demo,.fw-demo,.phone-demo")?[g]:[...g.children];
     kids.forEach((k,i)=>{k.classList.add("rv");k.style.setProperty("--d",(Math.min(i,6)*.08)+"s");io.observe(k);});}));
 }

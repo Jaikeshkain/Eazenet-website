@@ -286,6 +286,17 @@ p{margin:0}
 .plat h3{font-size:1.5rem;}
 .plat .ver{color:var(--fg);opacity:.85}
 .plat p{color:var(--muted);font-size:14px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+.price{border:1px solid var(--line);border-radius:var(--r);padding:28px;background:rgba(8,14,30,.75);display:flex;flex-direction:column;gap:14px;min-width:0}
+.price.hi{border-color:color-mix(in srgb,var(--p) 55%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--p) 12%,rgba(8,14,30,.85)),rgba(8,14,30,.9));box-shadow:0 0 40px -12px color-mix(in srgb,var(--p) 45%,transparent)}
+.price-top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:26px}
+.price .side{font:500 12px var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--p)}
+.price .amt{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.price .amt b{font:700 clamp(2rem,3.4vw,2.6rem)/1 var(--f-display);letter-spacing:-.02em;color:var(--fg)}
+.price .amt s{font:500 1.1rem var(--f-display);color:var(--muted);flex-basis:100%}
+.price .amt span{font:500 13px var(--f-mono);color:var(--muted);letter-spacing:.04em}
+.price .save{font:500 12px var(--f-mono);letter-spacing:.04em;color:var(--p)}
+.price p{color:var(--muted);font-size:15px;margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
 .plat .soon{font:500 11.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line-2);border-radius:999px;padding:9px 12px;text-align:center}
 /* fasway demo */
 .fw-demo{display:grid;grid-template-columns:1.5fr auto;gap:clamp(20px,4vw,48px);align-items:center}
@@ -403,6 +414,7 @@ footer{position:relative;z-index:10;border-top:1px solid var(--line);background:
 @media (max-width:980px){
   .bento .pcard{grid-column:span 6!important}
   .feats.four,.plats{grid-template-columns:1fr 1fr}
+  .prices{grid-template-columns:1fr}
   .trust,.fw-demo{grid-template-columns:1fr}
   .fw-demo{justify-items:center}
   .lap{width:100%}
