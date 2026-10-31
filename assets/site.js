@@ -285,6 +285,7 @@ function renderProduct(id){
     <div class="tags">${p.tags.map(t=>`<span class="chip">${t}</span>`).join("")}</div>
     <div class="cta-row">
       ${p.cta?`<button class="btn btn-primary" type="button" data-jump="pv-platforms">${p.cta} <span class="arr">→</span></button>`:`<button class="btn btn-primary" type="button" data-jump="contact-p">Book a demo <span class="arr">→</span></button>`}
+      ${p.pricing?`<button class="btn btn-ghost" type="button" data-jump="pricing">See pricing</button>`:""}
       <button class="btn btn-ghost" type="button" data-share>${I.share} Share</button>
       ${hint}
     </div>

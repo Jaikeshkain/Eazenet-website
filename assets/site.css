@@ -286,7 +286,7 @@ p{margin:0}
 .plat h3{font-size:1.5rem;}
 .plat .ver{color:var(--fg);opacity:.85}
 .plat p{color:var(--muted);font-size:14px;margin-top:auto;padding-top:12px;border-top:1px solid var(--line)}
-.prices{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));max-width:calc(var(--n,3) * 420px);gap:16px;align-items:stretch}
+.prices{display:grid;grid-template-columns:repeat(var(--n,3),minmax(0,1fr));max-width:calc(var(--n,3) * 420px);margin-inline:auto;gap:16px;align-items:stretch}
 .price{border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,4vw,28px);background:rgba(8,14,30,.75);display:flex;flex-direction:column;gap:14px;min-width:0}
 .price.hi{border-color:color-mix(in srgb,var(--p) 55%,transparent);background:linear-gradient(160deg,color-mix(in srgb,var(--p) 12%,rgba(8,14,30,.85)),rgba(8,14,30,.9));box-shadow:0 0 40px -12px color-mix(in srgb,var(--p) 45%,transparent)}
 .price-top{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:26px}
@@ -301,7 +301,8 @@ p{margin:0}
 .pcost div{display:flex;justify-content:space-between;gap:12px}
 .pcost dt{color:var(--muted)}
 .pcost dd{margin:0;font-family:var(--f-mono);font-size:13.5px;color:var(--fg);text-align:right;white-space:nowrap}
-.pincl{margin-top:28px;display:flex;flex-direction:column;gap:14px}
+.pincl{margin-top:28px;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.pincl .tags{justify-content:center}
 .pincl .chip{--c:var(--p);white-space:normal}
 .pfeats{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:15px;flex:1}
 .pfeats li{display:flex;gap:10px;align-items:flex-start}
