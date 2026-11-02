@@ -37,8 +37,6 @@ const I = {
   home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11l8-6.5 8 6.5V20H4z"/><path d="M9 16a4.2 4.2 0 0 1 6 0M10.8 18.2a1.6 1.6 0 0 1 2.4 0"/></svg>',
   tray:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14l2.5-8h13L21 14v5H3z"/><path d="M3 14h5l1 2h6l1-2h5"/></svg>',
   battery:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="7.5" width="16" height="9" rx="2"/><path d="M21 10.5v3"/><path d="M11.5 9.5l-2 3h3l-2 3"/></svg>',
-  video:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3z"/></svg>',
-  whatsapp:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20l1.3-4.2A8.2 8.2 0 1 1 8.4 19z"/><path d="M9.2 8.6c-.5.6-.5 1.6.3 2.9.9 1.4 2.3 2.5 3.6 2.8.8.2 1.5-.1 1.9-.8l-1.5-1.2-.9.6c-.7-.3-1.3-.9-1.7-1.7l.6-.9-1.1-1.6c-.5-.3-.9-.3-1.2-.1z"/></svg>',
   tick:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   share:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5.5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="18.5" r="2.5"/><path d="M8.2 10.8l7.6-4.1M8.2 13.2l7.6 4.1"/></svg>',
   globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.5 5.4 3.5 8.5s-1 5.9-3.5 8.5c-2.5-2.6-3.5-5.4-3.5-8.5s1-5.9 3.5-8.5z"/></svg>'
@@ -59,33 +57,23 @@ const P = {
     before:["Guests must use the room telephone to contact reception, request services or get assistance","Telephone calls only, with no messaging or video","Communication is restricted to a single physical device","Service requests are usually made by phone, with limited tracking"],
     after:["No traditional room telephone required","No application installation for guests","Instant communication through QR codes","Voice and video calling directly from the browser","Multiple guests can connect using their own smartphones","Centralized communication management for reception","Digital service requests with real-time status tracking","Complete guest communication history"],
     featTitle:"Key features.",
-    // feats: [icon, title, text, bullets, closing line]
     feats:[
-      ["qr","QR-based guest connectivity","Every hotel room receives a permanent, unique QR code. Guests scan it with their smartphone camera and instantly access the hotel's digital communication platform.",["No app installation","No complicated registration process","Quick access to room communication","Permanent QR codes for every room","The same QR code works for successive guests"]],
-      ["chat","Real-time messaging","Guests can message reception directly, whether they need assistance, have a question or want to communicate a requirement.",["Real-time two-way messaging","Instant message delivery","Shared conversation for all devices in the room","Centralized reception messaging dashboard","Conversation history maintained throughout the stay"]],
-      ["phone","Browser-based voice calling","Guests call reception from their smartphones without using room telephones. Calls start directly in the browser.",["Direct guest-to-reception voice calls","No dedicated calling application required","Incoming call notifications on connected guest devices","First-answer-wins call handling","Other devices stop ringing when one device accepts the call","Call history and recording support"]],
-      ["video","Video calling","Face-to-face communication between guests and reception through the browser, for when voice is not enough.",["Direct video communication","No additional application installation","Convenient visual assistance","Improved guest support experience"]],
-      ["users","Multi-device connectivity","Multiple guests in the same room can scan the same room QR code on their own smartphones. All authorized devices join one shared room conversation.",["Multiple smartphones connected to one room","Shared messaging history","Shared service requests","Incoming calls delivered to all connected devices","First device to answer receives the call","Individual device identification"],"This removes the limit of a traditional room telephone, where communication is restricted to one physical device."],
-      ["bell","Digital service requests","Guests request hotel services from their smartphones: room cleaning, fresh towels, drinking water, food and beverages, additional pillows, maintenance assistance and more.",["Digital request submission","Centralized request management","Request status tracking","Pending, in-progress and completed statuses","Device-level request identification"]],
-      ["dash","Centralized reception dashboard","Reception manages guest communication and hotel operations from one place.",["View occupied and vacant rooms","View active guest stays","Access guest conversations","Send and receive messages","Initiate browser-based calls","Manage incoming service requests","Track connected guest devices","View call and communication history","Access previous guest records"]],
-      ["card","Digital guest check-in","Guests scan a dedicated Hotel Check-in QR code displayed at reception and submit their details through a digital form.",["Guest name","WhatsApp number","Allotted room number","Check-in date","Stay duration"],"Reception approves or rejects the request. Once approved, the guest's room communication session becomes active."],
-      ["clock","Automatic checkout management","Guest communication access is tied to the guest's stay, based on check-in and checkout information.",["Automatic checkout date calculation","Scheduled checkout management","Reception-controlled checkout","Automatic guest device access revocation","Room occupancy updates","Historical conversation preservation"],"At checkout, guest access ends while historical records remain available to authorized reception staff."],
-      ["folder","Guest history and records","Keep organized records of previous stays, without mixing data between different guests.",["Guest-wise stay history","Room-wise stay history","Previous conversations","Historical service requests","Guest check-in and checkout records","Stay-based data separation"],"Each new guest receives a fresh communication session, so previous guests cannot access the new guest's information."],
-      ["whatsapp","WhatsApp integration","WhatsApp works as an alternative channel. When browser-based communication is unavailable, reception can contact the guest on their registered WhatsApp number, giving you one more option beyond the hotel's internal browser-based system."]
+      ["qr","Scan to connect","Every room gets a permanent QR code. Guests scan it with their phone camera. No app, no registration."],
+      ["chat","Chat, voice and video","Guests message or call reception by voice or video, right from the browser."],
+      ["users","The whole room connected","Everyone in the room joins from their own phone and shares one conversation."],
+      ["bell","Digital service requests","Guests request cleaning, towels, food or maintenance, and track the status."],
+      ["dash","Reception dashboard","Rooms, guests, messages, calls and requests, all managed from one screen."],
+      ["card","Check-in to checkout","Digital check-in, then access ends automatically at checkout. Stay records are kept for reception."]
     ],
-    compare:{title:"QR Hotel Connect vs. the traditional room telephone.",old:"Traditional telephone",result:"Replace a single-purpose communication device with a complete digital guest communication experience.",rows:[
-      ["Guest communication","Telephone calls","Chat, voice and video"],["Hardware","Physical telephone","Guest's smartphone"],["App installation","Not applicable","Not required"],["Messaging","Not available","Yes"],["Video calling","Not available","Yes"],["Multiple devices","Limited","Yes"],["Service requests","Usually phone-based","Digital requests"],["Request tracking","Limited","Centralized tracking"],["Communication history","Limited","Digital records"],["Guest management","Separate systems","Integrated platform"],["Room QR connectivity","Not available","Yes"],["Guest history","Limited","Stay-wise records"],["Reception dashboard","Separate telephone system","Centralized dashboard"]]},
+    compare:{title:"Better than the room telephone.",old:"Room telephone",rows:[
+      ["Guest communication","Telephone calls","Chat, voice and video"],["Hardware","Physical telephone","Guest's smartphone"],["Multiple devices","Limited","Yes"],["Service requests","Usually phone-based","Digital, with tracking"],["Guest records","Limited","Stay-wise digital records"]]},
     flowTitle:"A simple four-step process.",
     flow:[["Guest check-in","The guest scans the Hotel Check-in QR code, submits their details and waits for reception approval."],["Scan room QR","After check-in approval, the guest scans the permanent QR code inside their room."],["Connect and communicate","The guest can chat, make voice and video calls, and submit service requests. Multiple guests can connect to the same room session."],["Checkout","At checkout, communication access is automatically revoked while historical records remain available to reception."]],
     benefitsTitle:"Benefits for hotels.",
     benefits:[
-      ["plug","Reduce telephone infrastructure dependency","Reduce reliance on traditional room telephone hardware by using guests' existing smartphones."],
-      ["sparkle","Improve guest experience","Give guests a familiar and convenient way to communicate with hotel staff."],
-      ["desk","Streamline reception operations","Manage messages, calls, service requests and guest stays from one centralized dashboard."],
-      ["bolt","Faster service management","Receive digital service requests and track their progress without relying entirely on telephone communication."],
-      ["layers","Better operational visibility","Know which rooms are occupied, which guest devices are connected and which service requests require attention."],
-      ["clip","Maintain historical records","Keep organized guest communication and service-request records for future reference."],
-      ["home","Modernize your hotel","Introduce a technology-driven communication experience without requiring guests to download an application."]
+      ["plug","Less telephone hardware","Rely on guests' own smartphones instead of room telephones."],
+      ["sparkle","A better guest experience","Give guests a familiar, convenient way to reach your staff."],
+      ["desk","Smoother reception","Handle communication, requests and stays from one dashboard."]
     ],
     whoLede:"Designed for hospitality businesses of different sizes.",
     who:["Hotels and resorts","Boutique hotels","Business hotels","Budget hotels","Luxury properties","Guest houses","Serviced apartments","Hostels","Hospitality chains"],
@@ -335,14 +323,13 @@ function renderProduct(id){
 
   <section class="band" id="features"><div class="wrap">
     <div class="sec-head"><div><span class="eyebrow" style="color:var(--p)">What you can do</span><h2 class="h2">${p.featTitle||"Everything in one place."}</h2></div></div>
-    <div class="feats ${p.feats.length===8?"four":""}${p.feats.length===11?" long":""}">${p.feats.map(f=>`<div class="feat"><span class="ic">${I[f[0]]}</span><h3>${f[1]}</h3><p>${f[2]}</p>${f[3]?`<ul class="pfeats">${f[3].map(x=>`<li>${I.tick}${x}</li>`).join("")}</ul>`:""}${f[4]?`<p>${f[4]}</p>`:""}</div>`).join("")}</div>
+    <div class="feats ${p.feats.length===8?"four":""}">${p.feats.map(f=>`<div class="feat"><span class="ic">${I[f[0]]}</span><h3>${f[1]}</h3><p>${f[2]}</p></div>`).join("")}</div>
   </div></section>
 
   ${p.compare?`<section class="band solid" id="compare"><div class="wrap">
     <div class="sec-head"><div><span class="eyebrow" style="color:var(--p)">Compare</span><h2 class="h2">${p.compare.title}</h2></div></div>
     <div class="cmp-wrap"><table class="cmp"><thead><tr><th scope="col">Feature</th><th scope="col">${p.compare.old}</th><th scope="col">${p.short}</th></tr></thead>
       <tbody>${p.compare.rows.map(r=>`<tr><th scope="row">${r[0]}</th><td>${r[1]}</td><td>${r[2]}</td></tr>`).join("")}</tbody></table></div>
-    <p class="lede cmp-end"><b>The result:</b> ${p.compare.result}</p>
   </div></section>`:""}
 
   ${p.security?`<section class="band solid"><div class="wrap">
@@ -365,7 +352,7 @@ function renderProduct(id){
 
   ${p.benefits?`<section class="band"><div class="wrap">
     <div class="sec-head"><div><span class="eyebrow" style="color:var(--p)">Why hotels choose it</span><h2 class="h2">${p.benefitsTitle}</h2></div></div>
-    <div class="feats wl">${p.benefits.map(f=>`<div class="feat"><span class="ic">${I[f[0]]}</span><h3>${f[1]}</h3><p>${f[2]}</p></div>`).join("")}</div>
+    <div class="feats">${p.benefits.map(f=>`<div class="feat"><span class="ic">${I[f[0]]}</span><h3>${f[1]}</h3><p>${f[2]}</p></div>`).join("")}</div>
   </div></section>`:""}
 
   <section class="band"><div class="wrap" style="display:flex;flex-direction:column;gap:28px">
