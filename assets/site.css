@@ -307,6 +307,20 @@ p{margin:0}
 .pfeats{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;font-size:15px;flex:1}
 .pfeats li{display:flex;gap:10px;align-items:flex-start}
 .pfeats svg{flex:none;margin-top:3px;color:var(--p)}
+.feat .pfeats{font-size:14.5px;gap:8px;flex:none}
+@media (min-width:561px){.feats.long .feat:last-child{grid-column:span 2}}
+.feats.wl .feat:last-child{grid-column:1/-1}
+.cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:rgba(8,14,30,.75)}
+.cmp{width:100%;border-collapse:collapse;font-size:15px}
+.cmp th,.cmp td{padding:14px clamp(10px,2vw,22px);text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.cmp tbody tr:last-child>*{border-bottom:0}
+.cmp thead th{font:500 11.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cmp thead th:last-child{color:var(--p);background:color-mix(in srgb,var(--p) 8%,transparent)}
+.cmp tbody th{font-weight:500;color:var(--fg)}
+.cmp tbody td{color:var(--muted)}
+.cmp tbody td:last-child{color:var(--fg);background:color-mix(in srgb,var(--p) 8%,transparent)}
+.cmp-end{margin-top:24px}
+.cmp-end b{color:var(--fg)}
 .plat .soon{font:500 11.5px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line-2);border-radius:999px;padding:9px 12px;text-align:center}
 /* fasway demo */
 .fw-demo{display:grid;grid-template-columns:1.5fr auto;gap:clamp(20px,4vw,48px);align-items:center}
