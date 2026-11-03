@@ -23,6 +23,7 @@ const products = order.map(slug => {
 const esc = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 function page({ title, desc, url, robots }) {
   let h = home
+    .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\n/, "") // company and site data belong on the home page only
     .replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`)
     .replace(/(<meta name="description" content=")[^"]*/, `$1${esc(desc)}`)
     .replace(/(<meta property="og:title" content=")[^"]*/, `$1${esc(title)}`)
@@ -37,12 +38,12 @@ for (const p of products) {
   if (!p.name || !p.desc) throw new Error(`Could not read product data for ${p.slug}`);
   mkdirSync(join(root, p.slug), { recursive: true });
   writeFileSync(join(root, p.slug, "index.html"),
-    page({ title: `${p.name} · Eazenet.online`, desc: p.desc, url: `${SITE}/${p.slug}/` }));
+    page({ title: `${p.name} · Eazenet`, desc: p.desc, url: `${SITE}/${p.slug}/` }));
   console.log(`wrote ${p.slug}/index.html`);
 }
 
 writeFileSync(join(root, "404.html"),
-  page({ title: "Page not found · Eazenet.online", desc: "This page doesn't exist. Explore Eazenet.online products instead.", url: `${SITE}/`, robots: "noindex" }));
+  page({ title: "Page not found · Eazenet", desc: "This page doesn't exist. Explore Eazenet products instead.", url: `${SITE}/`, robots: "noindex" }));
 
 const today = new Date().toISOString().slice(0, 10);
 writeFileSync(join(root, "sitemap.xml"),

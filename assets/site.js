@@ -493,7 +493,7 @@ document.addEventListener("submit",async e=>{
 /* ---------- share ---------- */
 async function shareProduct(id,btn){
   const p=P[id], url=location.origin+"/"+id+"/";
-  if(navigator.share){try{await navigator.share({title:p.name+" · Eazenet.online",text:p.card,url});}catch(_){}return;}
+  if(navigator.share){try{await navigator.share({title:p.name+" · Eazenet",text:p.card,url});}catch(_){}return;}
   const label=btn.innerHTML;
   try{await navigator.clipboard.writeText(url);btn.textContent="Link copied";}
   catch(_){prompt("Copy this link",url);}
@@ -1143,8 +1143,8 @@ function route(){
   const apply=()=>{
     document.getElementById("view-home").hidden=isProduct;
     pv.hidden=!isProduct;
-    if(isProduct){if(currentView!==view){renderProduct(slug);enhance(pv);}document.title=P[slug].name+" · Eazenet.online";}
-    else{document.documentElement.style.setProperty("--p","#6fd0ff");document.title="Eazenet.online";}
+    if(isProduct){if(currentView!==view){renderProduct(slug);enhance(pv);}document.title=P[slug].name+" · Eazenet";}
+    else{document.documentElement.style.setProperty("--p","#6fd0ff");document.title="Eazenet | Software, Hardware and Automation Products";}
     if(window.THREE&&currentView!==view)stageApi.setScene(view);
     currentView=view;
     navLinks.forEach(a=>a.removeAttribute("aria-current"));
